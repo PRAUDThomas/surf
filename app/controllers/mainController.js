@@ -2,11 +2,19 @@ const {
     Surfer,
     Brand
   } = require('../models');
+
+  const {
+    getUserByEmail,
+    createUser,
+    updateUser
+} = require('./user')
   
   const {
     Op
   } = require('sequelize');
   
+  const emailValidator = require('email-validator');
+
   const controller = {
     home: async function (req, res) {
       try {
@@ -106,9 +114,60 @@ const {
       })
     },
 
-    signup: function (req, res) {
+    signupPage(req, res) {
       res.render('signup')
-    }
+      console.log(req.body)
+  },
+
+  async signup(req, res) {
+      // on récupère les données formulaires depuis le req.body
+  
+      const {
+          name,
+          email,
+          password,
+          passwordConfirm
+      } = req.body;
+
+      // on vérifie qu'aucune donnée ne manque
+      if (!name || !email || !password) {
+          return res.render('signup', {
+              error: 'Tous les champs doivent être renseignés'
+          })
+      }
+    
+      // on vérifie que l'adresse email est valide via le package email-validator
+      if (!emailValidator.validate("test@email.com")) {
+          return res.render('signup', {
+              error: 'Veuillez rentrer un email valide'
+          })
+      }
+
+      // et je construis un nouvel utilisateur en lui passant le hash et pa sle password pour enregistrer dans la db
+      const newUser = {
+          name: name,
+          email: email,
+          password: password
+      }
+      // on met dans un bloc try catch pour gérer si sequelize nous renvoie une erreur lors du create (par exemple si l'email est déjà utilisé)
+      try {
+          // on appelle notre fonction de creation d'utilisateur et on récupère l'utilisateur créé
+          
+          const user = await createUser(newUser);
+          console.log(user)
+          // on renvoie la page login si l'utilisateur a bien créé son compte en ajoutant un message pour le feedback
+          
+          res.render('login', {
+              message: `Compte créé avec succès, veuillez vous connecter ${user.name}`
+          })
+      } catch (err) {
+          // si la moindre erreur survient on renvoie la page signup avec le message d'erreur
+          
+          return res.render('signup', {
+              err
+          })
+      }
+  },
   
   };
   

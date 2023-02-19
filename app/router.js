@@ -14,6 +14,7 @@ router.get('/brands/:name', controller.brand)
 
 router.get('/search', controller.search)
 
-router.get('/signup', controller.signup)
+router.get('/signup', controller.signupPage)
+router.post('/signup', controller.signup)
 
 module.exports = router;

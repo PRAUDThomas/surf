@@ -4,19 +4,20 @@ const sequelize = require('../database');
 class User extends Model {}
 
 User.init({
-    name: {
-      type: DataTypes.TEXT,
-      allowNull: false
-    },
-    email: {
-      type: DataTypes.TEXT
-    },
-    password: {
-      type: DataTypes.TEXT,
-    },
-  }, {
-    sequelize,
-    tableName: 'User',
-  });
+  email: {
+      type: DataTypes.STRING,
+      unique: true
+  },
+  password: DataTypes.STRING,
+  name: DataTypes.STRING,
+  role: {
+      type: DataTypes.STRING,
+      default: 'guest'
+  }
+  // psql -> ALTER TABLE public.user ADD COLUMN "role" TEXT DEFAULT 'guest';
+}, {
+  sequelize,
+  tableName: "user",
+});
 
 module.exports = User;

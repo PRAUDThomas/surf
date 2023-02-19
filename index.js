@@ -10,6 +10,10 @@ app.set('views', './app/views');
 // pour tout ce qui est css, img, js, je vais servir de manière statique le contenu de mes fichiers déjà prêts
 app.use(express.static('./public'));
 
+app.use(express.urlencoded({
+  extended: true
+}));
+
 app.use(router);
 
 app.listen(3000, () => {
