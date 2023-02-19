@@ -126,7 +126,6 @@ const {
           name,
           email,
           password,
-          passwordConfirm
       } = req.body;
 
       // on vérifie qu'aucune donnée ne manque
