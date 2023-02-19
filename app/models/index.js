@@ -7,21 +7,21 @@ Surfer.belongsTo(Brand, {
   foreignKey: 'brand_id',
 });
 Brand.hasMany(Surfer, {
-  as: 'Surfers',
+  as: 'surfers',
   foreignKey: 'brand_id',
 });
 
 Category.belongsToMany(Surfer, {
-  as: 'Surfers',
-  through: 'category_has_Surfers',
+  as: 'surfers',
+  through: 'category_has_surfers',
   foreignKey: 'category_id',
-  otherKey: 'Surfer_id'
+  otherKey: 'surfer_id'
 })
 Surfer.belongsToMany(Category, {
   as: 'categories',
-  through: 'category_has_Surfers',
+  through: 'category_has_surfers',
   otherKey: 'category_id',
-  foreignKey: 'Surfer_id'
+  foreignKey: 'surfer_id'
 })
 
 module.exports = {
