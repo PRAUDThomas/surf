@@ -104,6 +104,10 @@ const {
       res.render('search', {
         results
       })
+    },
+
+    signup: function (req, res) {
+      res.render('signup')
     }
   
   };

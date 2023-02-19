@@ -13,13 +13,13 @@ Brand.hasMany(Surfer, {
 
 Category.belongsToMany(Surfer, {
   as: 'surfers',
-  through: 'category_has_surfers',
+  through: 'category_has_Surfers',
   foreignKey: 'category_id',
   otherKey: 'surfer_id'
 })
 Surfer.belongsToMany(Category, {
   as: 'categories',
-  through: 'category_has_surfers',
+  through: 'category_has_Surfers',
   otherKey: 'category_id',
   foreignKey: 'surfer_id'
 })
