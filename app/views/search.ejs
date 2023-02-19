@@ -1,0 +1,29 @@
+<%- include("partials/header") %>
+
+<main class="page">
+  <section class="content">
+    <h1 class="content-title">Rechercher un athelete</h1>
+    <form class="search" action="/search" method="GET">
+      <label class="search-row">
+        Nom de l'athlete
+        <input type="text" name="title">
+      </label>
+
+      <button type="submit">Valider</button>
+    </form>
+
+    <% if (!results) { %>
+      <p>Recherchez un athlete par son nom</p>
+    <% } else if (results.length === 0) { %>
+      <p>Aucun résultat</p>
+    <% } else { %>
+    <ul class="content-list">
+      <% for(const surfer of results) { %>
+        <li class="content-item"><a href="/surfer/<%= surfer.id %>" class="content-link"><%= surfer.title %></a></li>
+      <% } %>
+    </ul>
+    <% } %>
+  </section>
+</main>
+
+<%- include("partials/footer") %>

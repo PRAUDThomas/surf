@@ -1,0 +1,15 @@
+<%- include('partials/header') %>
+    
+      <main class="page">
+        <section class="content">
+          <h1 class="content-title">Bienvenue chez Surfer-brands</h1>
+          <p class="content-desc">Notre page est fière de vous présenter ses athletes</p>
+          <ul class="content-list">
+            <% for(const surf of surfers) { %>
+              <li class="content-item"><a href="/surfer/<%= surf.id %>" class="content-link"><%= surf.title %></a></li>
+            <% } %>
+          </ul>
+        </section>
+      </main>
+    
+<%- include('partials/footer') %>

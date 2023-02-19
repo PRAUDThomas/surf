@@ -1,0 +1,21 @@
+<%- include("partials/header") %>
+
+<main class="page">
+  <section class="content">
+    <h1 class="content-title"><%= brand.name %></h1>
+    <% if (brand.products.length < 1) { %> 
+      <p class="content-desc">Aucun produit pour cette marque</p>
+    <% } else { %>
+      <ul class="content-list">
+        <% for(const surfer of brand.surfers) { %>
+          <li class="content-item"><a href="/surfer/<%= surfer.id %>" class="content-link"><%= surfer.title %></a></li>
+        <% } %>
+      </ul>
+    <% } %>
+    <footer class="content-action">
+      <a class="content-link" href="/brands">Retour aux marques</a>
+    </footer>
+  </section>
+</main>
+
+<%- include("partials/footer") %>

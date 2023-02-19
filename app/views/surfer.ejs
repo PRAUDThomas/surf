@@ -1,0 +1,23 @@
+<%- include("partials/header") %>
+  
+      <main class="page">
+        <section class="content">
+          <h1 class="content-title"><%= surfer.title %></h1>
+          <p class="content-desc"><%= surfer.description %></p>
+  
+          <div class="brand">
+            <p class="brand-content"><%= surfer.brand.name %></p>
+          </div>
+          <ul class="categories">
+            <% for (const category of surfer.categories) { %>
+              <li class="categories-item"><%= category.title %></li>
+            <% } %>
+          </ul>
+          <footer class="content-action">
+            <a class="content-link" href="/">Retour à l'accueil</a>
+          </footer>
+        </section>
+      </main>
+
+<%- include("partials/footer") %>
+    
